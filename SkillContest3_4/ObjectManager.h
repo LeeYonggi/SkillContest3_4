@@ -45,6 +45,7 @@ public:
 		iter->second->push_back(obj);
 		return obj;
 	}
+	list<Object*> *GetObjectList(OBJ_KINDS objList);
 
 };
 

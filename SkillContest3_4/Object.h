@@ -1,6 +1,7 @@
 #pragma once
 
-#define BASIC_GRAVITY 0.02
+#define GRAVITY_SCALE 0.02
+class Particle;
 class Object
 {
 public:
@@ -12,11 +13,12 @@ public:
 	Vector3 scale = { 1, 1, 1 };
 	Matrix matR;
 	CMeshLoader *mesh;
-	Texture *tex;
+	Texture *texture;
 	vector<vector<CMeshLoader*>> animeMesh;
 	vector<vector<Texture*>> animeTexture;
 	D3DXQUATERNION quaternion;
 	Vector3 moveVector = { 1, 0, 0 };
+	vector<Particle*> vParticle;
 	bool isDestroy = false;
 	bool isActive = true;
 	float frame = 0.0f;

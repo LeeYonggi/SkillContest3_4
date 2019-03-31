@@ -203,6 +203,9 @@
     <ClCompile Include="Effect.cpp">
       <Filter>Object\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerArm.cpp">
+      <Filter>Object\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -271,6 +274,9 @@
     </ClInclude>
     <ClInclude Include="Effect.h">
       <Filter>Object\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerArm.h">
+      <Filter>Object\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

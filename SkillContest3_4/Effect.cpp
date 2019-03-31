@@ -11,6 +11,7 @@ Effect::Effect(vector<Texture*> vTexture, Vector3 _pos, float _scale, Vector3 _m
 	isLoop = _isLoop;
 	endTime = _endTime;
 	animeTexture.push_back(vTexture);
+	mesh = MESHMANAGER->AddMesh("Plane", L"./Resource/Effect/Plane/bullet.obj");
 }
 
 Effect::~Effect()
@@ -41,13 +42,14 @@ void Effect::Update()
 			isActive = false;
 		}
 	}
+	pos += moveVector * ELTIME;
 }
 
 void Effect::Render()
 {
 	int count = int(frame * 12) % animeTexture[0].size();
 	matR = GetBillboard(pos, CAMERAMANAGER->mainCamera->eye);
-	MESHMANAGER->DrawEffect();
+	MESHMANAGER->DrawEffect(mesh, animeTexture[0][count], pos, matR, scale);
 }
 
 void Effect::Release()

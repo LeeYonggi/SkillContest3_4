@@ -28,8 +28,12 @@ Camera * CameraManager::ChangeCamera(string name)
 	auto iter = m_Camera.find(name);
 	if (iter == m_Camera.end()) return nullptr;
 
-	mainCamera->isActive = false;
-	Vector3 eye = mainCamera->eye;
+	Vector3 eye = { 0, 0, 0};
+	if (mainCamera)
+	{
+		mainCamera->isActive = false;
+		eye = mainCamera->eye;
+	}
 	mainCamera = iter->second;
 	mainCamera->eye = eye;
 	mainCamera->isActive = true;

@@ -10,10 +10,10 @@ public:
 public:
 	bool isAttack = false;
 	float frame = 0.0f;
-	float attackdelay = 0.0f;
+	float attackDelay = 0.0f;
 
 public:
 	void AttackUpdate();
-	void Attack(BULLET_STATE bulletState, OBJ_KINDS kind, Vector3 pos, Vector3 moveVector, float gravity);
+	void Attack(BULLET_STATE bulletState, OBJ_KINDS kind, Vector3 pos, Vector3 moveVector, float gravity, float _attackDelay);
 };
 

@@ -16,7 +16,7 @@ void Background::Init()
 	minimap1 = IMAGEMANAGER->AddTexture(L"minimap1", L"./Resource/map/minimap/side.png");
 	minimap2 = IMAGEMANAGER->AddTexture(L"minimap2", L"./Resource/map/minimap/top.png");
 	mesh = MESHMANAGER->AddMesh("Background", L"./Resource/map/map.obj");
-	pos = { 0, 0, -12 };
+	pos = { 0, 0, 0 };
 	scale = { 1, 1, 1 };
 }
 

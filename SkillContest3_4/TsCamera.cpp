@@ -19,7 +19,7 @@ void TsCamera::Update()
 	Vector3 temp = player->pos;
 	at = player->pos;
 	temp.y += 10;
-	temp.z -= 25;
+	temp.z -= 30;
 	eye = Lerp(eye, temp, 0.1f);
 
 }

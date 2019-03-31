@@ -2,6 +2,7 @@
 #include "Player.h"
 
 #include "Background.h"
+#include "Bullet.h"
 
 
 Player::Player(Background * _background)
@@ -22,6 +23,7 @@ void Player::Init()
 	playerFunc[PLAYER_IDLE] = &Player::PlayerIdle;
 	playerFunc[PLAYER_MOVE] = &Player::PlayerMove;
 	playerFunc[PLAYER_ATTACK] = &Player::PlayerAttack;
+	vAttack.push_back(CharacterAttack());
 
 	scale = { 0.02, 0.02, 0.02 };
 	pos = {10, distanceGround, 0};
@@ -30,6 +32,8 @@ void Player::Init()
 void Player::Update()
 {
 	isControl = false;
+	if (INPUTMANAGER->KeyDown(VK_SPACE))
+		PlayerJump();
 	PlayerRigidbody();
 	(this->*playerFunc[state])();
 
@@ -80,18 +84,25 @@ void Player::PlayerIdle()
 {
 	if (isControl)
 		state = PLAYER_MOVE;
-
+	if (IsPlayerAttack())
+		state = PLAYER_ATTACK;
 }
 
 void Player::PlayerMove()
 {
 	if (!isControl)
 		state = PLAYER_IDLE;
+	if (IsPlayerAttack())
+		state = PLAYER_ATTACK;
 
+	pos += moveVector * speed;
 }
 
 void Player::PlayerAttack()
 {
+	vAttack[0].AttackUpdate();
+	if(vAttack[0].isAttack == false)
+		state = PLAYER_IDLE;
 }
 
 void Player::PlayerRigidbody()
@@ -102,8 +113,6 @@ void Player::PlayerRigidbody()
 	{
 		moveVector = temp;
 		GetDirectionToPoint();
-
-		pos += moveVector * speed;
 	}
 	Vector2 tempSide, temptop;
 	tempSide.x = pos.x;
@@ -114,6 +123,11 @@ void Player::PlayerRigidbody()
 	{
 		velocity = 0;
 		pos.y = tempSide.y + distanceGround;
+		if (isJump)
+		{
+			isJump = false;
+			jumpCount++;
+		}
 	}
 	pos.y += velocity;
 }
@@ -137,15 +151,15 @@ void Player::GetDirectionToPoint()
 
 bool Player::IsPixelCollision(Vector2 * point)
 {
-	if (GetPixelCollision(*point * 10, background->minimap1))
+	if (GetPixelCollision(*point * 5, background->minimap1))
 	{
 		while (true)
 		{
-			if (GetPixelCollision(*point * 10, background->minimap1))
-				point->y += 0.1f;
+			if (GetPixelCollision(*point * 5, background->minimap1))
+				point->y += 0.2f;
 			else
 			{
-				point->y -= 0.1f;
+				point->y -= 0.2f;
 				return true;
 			}
 		}
@@ -154,11 +168,30 @@ bool Player::IsPixelCollision(Vector2 * point)
 	{
 		for (int i = 0; i < 30; i++)
 		{
-			if (GetPixelCollision(*point * 10, background->minimap1))
+			if (GetPixelCollision(*point * 5, background->minimap1))
 				break;
 			else
-				point->y -= 0.1f;
+				point->y -= 0.2f;
 		}
+	}
+	return false;
+}
+
+void Player::PlayerJump()
+{
+	if (jumpCount < 1) return;
+	velocity = 0.6f;
+	pos.y += 0.2f;
+	isJump = true;
+	jumpCount -= 1;
+}
+
+bool Player::IsPlayerAttack()
+{
+	if (INPUTMANAGER->KeyDown('Q'))
+	{
+		vAttack[0].Attack(BULLET_STATE::BULLET_120MM, OBJ_KINDS::OBJ_PBULLET, pos, moveVector, GRAVITY_SCALE + 0.06f, 0.6f);
+		return true;
 	}
 	return false;
 }

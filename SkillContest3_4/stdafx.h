@@ -18,10 +18,10 @@ typedef D3DXMATRIX  Matrix;
 
 #include "Utility.h"
 
+#include "ImageManager.h"
+
 #include "MeshLoader.h"
 #include "MeshManager.h"
-
-#include "ImageManager.h"
 
 #include "Object.h"
 #include "ObjectManager.h"

@@ -68,3 +68,11 @@ void ObjectManager::Release()
 	}
 	m_ObjectList.clear();
 }
+
+list<Object*> *ObjectManager::GetObjectList(OBJ_KINDS objList)
+{
+	auto iter = m_ObjectList.find(objList);
+	if (iter == m_ObjectList.end()) return nullptr;
+
+	return iter->second;
+}

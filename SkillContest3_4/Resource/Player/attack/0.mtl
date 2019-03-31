@@ -12,5 +12,5 @@ newmtl Material__248
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka 1.png
-	map_Kd 1.png
+	map_Ka aaaa.png
+	map_Kd aaaa.png

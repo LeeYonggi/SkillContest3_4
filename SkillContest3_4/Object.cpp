@@ -1,6 +1,7 @@
 #include "DXUT.h"
 #include "Object.h"
 
+#include "Particle.h"
 
 Object::Object()
 {
@@ -13,6 +14,9 @@ Object::~Object()
 {
 	animeMesh.clear();
 	animeTexture.clear();
+	for (auto iter : vParticle)
+		iter->isActive = false;
+	vParticle.clear();
 }
 
 void Object::RotateLerp(Vector3 eye, Vector3 at, Matrix * mat)
@@ -68,7 +72,7 @@ Matrix Object::GetBillboard(Vector3 p1, Vector3 p2)
 
 	Matrix mat, tempMatR;
 	D3DXMatrixLookAtLH(&mat, &Vector3(0, 0, 0), &temp, &Vector3(0, 1, 0));
-	D3DXMatrixRotationY(&tempMatR, D3DXToRadian(-90));
+	D3DXMatrixRotationX(&tempMatR, D3DXToRadian(-90));
 	mat *= tempMatR;
 	return mat;
 }

@@ -18,6 +18,7 @@ private:
 
 public:
 	Texture *AddTexture(wstring str, wstring file);
+	vector<Texture*> AddAnimeTexture(wstring str, wstring file, int low, int high);
 
 	void Release();
 };

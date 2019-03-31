@@ -1,5 +1,6 @@
 #pragma once
 #include "Object.h"
+#include "CharacterAttack.h"
 
 enum PLAYER_STATE
 {
@@ -22,10 +23,13 @@ private:
 	Vector2 backPoint = { 0.0f, 0.0f }, frontPoint = { 0, 0 };
 	Background *background;
 	float velocity = 0.0f;
-	float gravity = BASIC_GRAVITY;
+	float gravity = GRAVITY_SCALE;
 	bool isControl;
 	float distanceGround = 5.2f;
-	float speed = 0.3f;
+	float speed = 0.4f;
+	int jumpCount = 1;
+	bool isJump = false;
+	vector<CharacterAttack> vAttack;
 
 public:
 	virtual void Init()		override;
@@ -41,5 +45,7 @@ public:
 	void PlayerRigidbody();
 	void GetDirectionToPoint();
 	bool IsPixelCollision(Vector2 *point);
+	void PlayerJump();
+	bool IsPlayerAttack();
 };
 

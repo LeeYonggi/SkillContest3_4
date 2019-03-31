@@ -34,6 +34,19 @@ Texture * ImageManager::AddTexture(wstring str, wstring file)
 	return temp;
 }
 
+vector<Texture*> ImageManager::AddAnimeTexture(wstring str, wstring file, int low, int high)
+{
+	vector<Texture*> temp;
+	for (int i = low; i <= high; i++)
+	{
+		WCHAR wctr[128];
+		wsprintf(wctr, file.c_str(), i);
+		temp.push_back(AddTexture(str + to_wstring(i), wctr));
+	}
+
+	return temp;
+}
+
 void ImageManager::Release()
 {
 	for (auto iter : m_Texture)

@@ -15,3 +15,10 @@ D3DLIGHT9 d3d::GetDirectionalLight(Vector3 * dir, D3DXCOLOR * color)
 
 	return light;
 }
+
+int GetRandomNumber(int low, int high)
+{
+	static const double fraction = 1.0f / (RAND_MAX + 1.0f);
+
+	return low + int((high - low + 1) * (std::rand() * fraction));
+}

@@ -175,6 +175,12 @@ void MeshManager::DrawEffect(CMeshLoader * meshLoader, Texture *texture, Vector3
 	DEVICE->SetRenderState(D3DRS_NORMALIZENORMALS, true);
 	DEVICE->SetRenderState(D3DRS_SPECULARENABLE, true);
 
+	DEVICE->SetRenderState(D3DRS_ZWRITEENABLE, false);
+	DEVICE->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
+	DEVICE->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
+	DEVICE->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+	DEVICE->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+
 	for (int i = 0; i < meshLoader->GetNumMaterials(); i++)
 	{
 		D3DMATERIAL9 mtl = meshLoader->GetMaterial(i)->mtl;
@@ -182,7 +188,7 @@ void MeshManager::DrawEffect(CMeshLoader * meshLoader, Texture *texture, Vector3
 		mtl.Ambient.a = meshLoader->GetMaterial(i)->fAlpha;
 		mtl.Diffuse.a = meshLoader->GetMaterial(i)->fAlpha;
 		mtl.Specular.a = meshLoader->GetMaterial(i)->fAlpha;
-		mtl.Emissive = D3DXCOLOR(meshLoader->GetMaterial(i)->mtl.Diffuse) * 0.4f;
+		mtl.Emissive = D3DXCOLOR(meshLoader->GetMaterial(i)->mtl.Diffuse) * 1.0f;
 		mtl.Emissive.a = meshLoader->GetMaterial(i)->fAlpha;
 
 		mtl.Power = 1.0f;
@@ -191,6 +197,10 @@ void MeshManager::DrawEffect(CMeshLoader * meshLoader, Texture *texture, Vector3
 		DEVICE->SetTexture(0, texture->tex);
 		meshLoader->GetMesh()->DrawSubset(i);
 	}
+	DEVICE->SetRenderState(D3DRS_ZWRITEENABLE, true);
+	DEVICE->SetRenderState(D3DRS_ALPHABLENDENABLE, false);
+	DEVICE->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_BOTHINVSRCALPHA);
+	DEVICE->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_BOTHINVSRCALPHA);
 }
 
 void MeshManager::Release()

@@ -50,5 +50,5 @@ newmtl Material__310
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka depo.png
-	map_Kd depo.png
+	map_Ka aaaa.png
+	map_Kd aaaa.png
