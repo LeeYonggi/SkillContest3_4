@@ -20,7 +20,7 @@ class Bullet :
 {
 	using BulletFunc = void(Bullet::*)(BULLET_FUNCSTATE);
 public:
-	Bullet(Vector3 _pos, Vector3 _moveVector, BULLET_STATE bulletState, float _gravity);
+	Bullet(Vector3 _pos, Vector3 _moveVector, BULLET_STATE bulletState, float _gravity, float _velocity);
 	virtual ~Bullet();
 
 private:
@@ -29,6 +29,8 @@ private:
 	float gravity;
 	float velocity;
 	float speed = 1.0f;
+public:
+	int damage = 100;
 
 public:
 	virtual void Init()		override;

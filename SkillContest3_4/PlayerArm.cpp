@@ -34,7 +34,16 @@ void PlayerArm::Update()
 {
 	pos = player->pos;
 	scale = player->scale;
+	if (INPUTMANAGER->KeyDown('A'))
+	{
+		attackDistance += 0.5f;
+		if (attackDistance > 4.0f)
+			attackDistance = 0.0f;
+		else if (attackDistance > 0.5f)
+			attackDistance = 4.0f;
+	}
 	moveVector = player->moveVector;
+	moveVector.y += attackDistance;
 	RotateLerp({ 0, 0, 0 }, moveVector, &matR);
 
 	(this->*playerArmFunc[state])();
@@ -73,9 +82,10 @@ void PlayerArm::PlayerArmAttack()
 		D3DXVec3TransformCoord(&bMoveVector, &bMoveVector, &matR);
 		Matrix mat;
 		D3DXMatrixRotationY(&mat, D3DXToRadian(-30 + i * 60));
-		D3DXVec3TransformCoord(&startVector, &startVector, &(matR * mat));
+		mat *= matR;
+		D3DXVec3TransformCoord(&startVector, &startVector, &mat);
 
-		vAttack[i].Attack(BULLET_STATE::BULLET_88MM, OBJ_KINDS::OBJ_PBULLET, pos + startVector * 3, bMoveVector, 0, 0.2f);
+		vAttack[i].Attack(BULLET_STATE::BULLET_88MM, OBJ_KINDS::OBJ_PBULLET, pos + startVector * 3, bMoveVector, 0, 0.4f, 0);
 		vAttack[i].AttackUpdate();
 
 	}

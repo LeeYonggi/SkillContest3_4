@@ -15,7 +15,7 @@ public:
 	CMeshLoader *AddMesh(string str, wstring file);
 	vector<CMeshLoader*> AddMeshAnime(string str, wstring file, int low, int high);
 	vector<Material*> *GetMaterialList(wstring str, vector<Material*> *material);
-	void DrawMesh(CMeshLoader *meshLoader, Vector3 pos, Matrix matR, Vector3 scale = { 1, 1, 1 });
+	void DrawMesh(CMeshLoader *meshLoader, Vector3 pos, Matrix matR, Vector3 scale = { 1, 1, 1 }, D3DXCOLOR color = { 1, 1, 1, 1 });
 	void DrawMesh(string str, Vector3 pos, Matrix matR, Vector3 scale = { 1, 1, 1 });
 	void DrawAlphaMesh(CMeshLoader *meshLoader, Vector3 pos, Matrix matR, Vector3 scale = { 1, 1, 1 });
 	void DrawEffect(CMeshLoader *meshLoader, Texture *texture, Vector3 pos, Matrix matR, Vector3 scale = { 1, 1, 1 });

@@ -6,12 +6,13 @@
 #include "Effect.h"
 
 
-Bullet::Bullet(Vector3 _pos, Vector3 _moveVector, BULLET_STATE bulletState, float _gravity)
+Bullet::Bullet(Vector3 _pos, Vector3 _moveVector, BULLET_STATE bulletState, float _gravity, float _velocity)
 {
 	pos = _pos;
 	moveVector = _moveVector;
 	state = bulletState;
 	gravity = _gravity;
+	velocity = _velocity;
 }
 
 Bullet::~Bullet()
@@ -37,6 +38,8 @@ void Bullet::Update()
 	{
 		isDestroy = true;
 	}
+	if (pos.x > 1500 || pos.x < -100 || pos.z > 300 || pos.z < -300 || pos.y > 300 || pos.y < -300)
+		isDestroy = true;
 }
 
 void Bullet::Render()
@@ -58,12 +61,12 @@ void Bullet::Bullet120MM(BULLET_FUNCSTATE funcState)
 	{
 	case BULLET_INIT:
 		speed = 70.0f;
-		velocity = 0.9f;
 		mesh = MESHMANAGER->AddMesh("120MM", L"./Resource/Bullet/120MM/skill.obj");
 		scale = { 0.1, 0.1, 0.1 };
 		particleTexture = IMAGEMANAGER->AddAnimeTexture(L"dust", L"./Resource/Effect/dust/dust_%d.png", 1, 5);
 		vParticle.push_back(OBJECTMANAGER->AddObject(OBJ_EFFECT, new Particle(particleTexture)));
 		vParticle[0]->isActive = false;
+		damage = 200;
 		break;
 	case BULLET_UPDATE:
 	{
@@ -102,13 +105,15 @@ void Bullet::Bullet120MM(BULLET_FUNCSTATE funcState)
 
 void Bullet::Bullet88MM(BULLET_FUNCSTATE funcState)
 {
+	vector<Texture*> particleTexture;
 	switch (funcState)
 	{
 	case BULLET_INIT:
 		mesh = MESHMANAGER->AddMesh("Plane", L"./Resource/Effect/Plane/bullet.obj");
 		texture = IMAGEMANAGER->AddTexture(L"88MM", L"./Resource/Bullet/88MM/88MM.png");
-		speed = 100.0f;
+		speed = 70.0f;
 		scale = { 0.02, 0.02, 0.02 };
+		damage = 80;
 
 		break;
 	case BULLET_UPDATE:
@@ -120,6 +125,8 @@ void Bullet::Bullet88MM(BULLET_FUNCSTATE funcState)
 		MESHMANAGER->DrawEffect(mesh, texture, pos, matR, scale);
 		break;
 	case BULLET_RELEASE:
+		particleTexture = IMAGEMANAGER->AddAnimeTexture(L"bulletDestroy", L"./Resource/Effect/attack_effect/%d.png", 1, 5);
+		OBJECTMANAGER->AddObject(OBJ_EFFECT, new Effect(particleTexture, pos, 0.1f, { 0, 0, 0 }, false, 0.6f));
 		break;
 	default:
 		break;

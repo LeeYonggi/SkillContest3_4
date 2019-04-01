@@ -48,7 +48,7 @@ vector<Material*>* MeshManager::GetMaterialList(wstring str, vector<Material*>* 
 	return nullptr;
 }
 
-void MeshManager::DrawMesh(CMeshLoader * meshLoader, Vector3 pos, Matrix matR, Vector3 scale)
+void MeshManager::DrawMesh(CMeshLoader * meshLoader, Vector3 pos, Matrix matR, Vector3 scale, D3DXCOLOR color)
 {
 	Matrix matW, matS, matT;
 
@@ -63,7 +63,7 @@ void MeshManager::DrawMesh(CMeshLoader * meshLoader, Vector3 pos, Matrix matR, V
 	DEVICE->LightEnable(0, true);
 	
 	Vector3 dir = { 1.0, -1.0, 1.0 };
-	D3DLIGHT9 light = d3d::GetDirectionalLight(&dir, &D3DXCOLOR(1, 1, 1, 1));
+	D3DLIGHT9 light = d3d::GetDirectionalLight(&dir, &color);
 
 	DEVICE->SetLight(0, &light);
 

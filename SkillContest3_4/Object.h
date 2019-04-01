@@ -22,6 +22,7 @@ public:
 	bool isDestroy = false;
 	bool isActive = true;
 	float frame = 0.0f;
+	float radius = 1.0f;
 
 public:
 	virtual void Init()		PURE;
@@ -34,5 +35,6 @@ public:
 	bool GetPixelCollision(Vector2 p1, Texture *tex);
 	Vector3 GetTargetVec3(Vector3 p1, Vector3 p2);
 	Matrix GetBillboard(Vector3 p1, Vector3 p2);
+	bool GetCircleCollision(Vector3 p1, Vector3 p2, float r1, float r2);
 };
 

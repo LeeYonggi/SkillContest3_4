@@ -14,6 +14,6 @@ public:
 
 public:
 	void AttackUpdate();
-	void Attack(BULLET_STATE bulletState, OBJ_KINDS kind, Vector3 pos, Vector3 moveVector, float gravity, float _attackDelay);
+	void Attack(BULLET_STATE bulletState, OBJ_KINDS kind, Vector3 pos, Vector3 moveVector, float gravity, float _attackDelay, float velocity);
 };
 

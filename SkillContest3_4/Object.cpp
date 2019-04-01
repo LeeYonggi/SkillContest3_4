@@ -15,7 +15,7 @@ Object::~Object()
 	animeMesh.clear();
 	animeTexture.clear();
 	for (auto iter : vParticle)
-		iter->isActive = false;
+		iter->isDestroy = true;
 	vParticle.clear();
 }
 
@@ -75,4 +75,12 @@ Matrix Object::GetBillboard(Vector3 p1, Vector3 p2)
 	D3DXMatrixRotationX(&tempMatR, D3DXToRadian(-90));
 	mat *= tempMatR;
 	return mat;
+}
+
+bool Object::GetCircleCollision(Vector3 p1, Vector3 p2, float r1, float r2)
+{
+	Vector3 temp = p2 - p1;
+	float length = temp.x * temp.x + temp.y * temp.y;
+	float d = length + temp.z * temp.z;
+	return (sqrt(d) < r1 + r2);
 }

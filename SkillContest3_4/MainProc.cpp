@@ -31,9 +31,9 @@ void MainProc::Render()
 
 void MainProc::Release()
 {
+	ObjectManager::ReleaseInstance();
 	MeshManager::ReleaseInstance();
 	ImageManager::ReleaseInstance();
-	ObjectManager::ReleaseInstance();
 	SceneManager::ReleaseInstance();
 	CameraManager::ReleaseInstance();
 }

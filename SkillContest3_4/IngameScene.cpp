@@ -1,13 +1,11 @@
 #include "DXUT.h"
 #include "IngameScene.h"
 
-#include "Player.h"
-#include "TsCamera.h"
-#include "Background.h"
-#include "PlayerArm.h"
+#include "ObjCreator.h"
 
-IngameScene::IngameScene()
+IngameScene::IngameScene(STAGE_STATE _stage)
 {
+	stage = _stage;
 }
 
 
@@ -17,12 +15,7 @@ IngameScene::~IngameScene()
 
 void IngameScene::Init()
 {
-	Background *background = OBJECTMANAGER->AddObject(OBJ_BACKGROUND, new Background());
-	Player *player = OBJECTMANAGER->AddObject(OBJ_PLAYER, new Player(background));
-	OBJECTMANAGER->AddObject(OBJ_PLAYER, new PlayerArm(player));
-	Camera *camera = OBJECTMANAGER->AddObject(OBJ_CAMERA, new TsCamera(player));
-	CAMERAMANAGER->SetCamera("TsCamera", camera);
-	CAMERAMANAGER->ChangeCamera("TsCamera");
+	OBJECTMANAGER->AddObject(OBJ_CREATOR, new ObjCreator(stage));
 }
 
 void IngameScene::Update()

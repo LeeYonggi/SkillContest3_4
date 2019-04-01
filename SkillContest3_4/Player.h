@@ -9,6 +9,7 @@ enum PLAYER_STATE
 	PLAYER_ATTACK
 };
 class Background;
+class UI;
 class Player :
 	public Object
 {
@@ -31,6 +32,20 @@ private:
 	bool isJump = false;
 	vector<CharacterAttack> vAttack;
 
+private:
+	float lengthFrame = 0.0f;
+	UI *speedUpUI;
+	float speedUpFrame = 0.0f;
+	float thirdFrame = 0.0f;
+	float trakingFrame = 0.0f;
+	float nuclearFrame = 0.0f;
+
+
+public:
+	int hp = 1;
+	int totalHp = 3;
+	int itemCount[6];
+
 public:
 	virtual void Init()		override;
 	virtual void Update()	override;
@@ -47,5 +62,8 @@ public:
 	bool IsPixelCollision(Vector2 *point);
 	void PlayerJump();
 	bool IsPlayerAttack();
+	void PlayerAttacked();
+	void ItemCollision();
+	void ItemPlay();
 };
 

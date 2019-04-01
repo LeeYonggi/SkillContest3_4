@@ -25,10 +25,10 @@ void CharacterAttack::AttackUpdate()
 	}
 }
 
-void CharacterAttack::Attack(BULLET_STATE bulletState, OBJ_KINDS kind, Vector3 pos, Vector3 moveVector, float gravity, float _attackDelay)
+void CharacterAttack::Attack(BULLET_STATE bulletState, OBJ_KINDS kind, Vector3 pos, Vector3 moveVector, float gravity, float _attackDelay, float velocity)
 {
 	if (isAttack == true) return;
 	isAttack = true;
 	attackDelay = _attackDelay;
-	OBJECTMANAGER->AddObject(kind, new Bullet(pos, moveVector, bulletState, gravity));
+	OBJECTMANAGER->AddObject(kind, new Bullet(pos, moveVector, bulletState, gravity, velocity));
 }

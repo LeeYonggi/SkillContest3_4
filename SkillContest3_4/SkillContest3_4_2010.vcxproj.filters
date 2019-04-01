@@ -78,6 +78,30 @@
     <Filter Include="Object\Effect">
       <UniqueIdentifier>{6d864854-5ccd-47de-bd03-ccbc8dd5e3ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Enemy">
+      <UniqueIdentifier>{f6333f9e-2328-499b-a5d2-c9a46c918bbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Enemy\AirEnemy1">
+      <UniqueIdentifier>{a39207f8-a966-452e-a167-15e1f80766f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Enemy\Rock">
+      <UniqueIdentifier>{d6fdfea6-583a-4769-be4d-c637a57c1286}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Item">
+      <UniqueIdentifier>{e47be352-a8b2-47e1-b86a-9817185e7f07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\ObjCreator">
+      <UniqueIdentifier>{cc650513-8311-46ef-9e5a-4f45c5605c21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI">
+      <UniqueIdentifier>{b500aec8-78f8-4792-b308-870c93ae9881}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\PlayerUI">
+      <UniqueIdentifier>{31faa30c-117e-48bf-943c-0534c9529f89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Camera\SideCamera">
+      <UniqueIdentifier>{ed72b266-5149-4e57-abac-6fe1faf202bc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -206,6 +230,30 @@
     <ClCompile Include="PlayerArm.cpp">
       <Filter>Object\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Object\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="AirEnemy1.cpp">
+      <Filter>Object\Enemy\AirEnemy1</Filter>
+    </ClCompile>
+    <ClCompile Include="Rock.cpp">
+      <Filter>Object\Enemy\Rock</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjCreator.cpp">
+      <Filter>Object\ObjCreator</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerUI.cpp">
+      <Filter>Object\PlayerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SideCamera.cpp">
+      <Filter>Object\Camera\SideCamera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -277,6 +325,30 @@
     </ClInclude>
     <ClInclude Include="PlayerArm.h">
       <Filter>Object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="AirEnemy1.h">
+      <Filter>Object\Enemy\AirEnemy1</Filter>
+    </ClInclude>
+    <ClInclude Include="Rock.h">
+      <Filter>Object\Enemy\Rock</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjCreator.h">
+      <Filter>Object\ObjCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerUI.h">
+      <Filter>Object\PlayerUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SideCamera.h">
+      <Filter>Object\Camera\SideCamera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

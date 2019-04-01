@@ -31,10 +31,16 @@ void LoadScene::Loading()
 	MESHMANAGER->AddMesh("120MM", L"./Resource/Bullet/120MM/skill.obj");
 	IMAGEMANAGER->AddTexture(L"88MM", L"./Resource/Bullet/88MM/88MM.png");
 
+	//Enemy
+	MESHMANAGER->AddMesh("Enemy1", L"./Resource/Enemy/enemy/enemy_1.obj");
+	MESHMANAGER->AddMeshAnime("stone", L"./Resource/Enemy/stone/stone%d.obj", 0, 10);
+
 	//Effect
 	IMAGEMANAGER->AddAnimeTexture(L"dust", L"./Resource/Effect/dust/dust_%d.png", 1, 5);
 	IMAGEMANAGER->AddAnimeTexture(L"bombGround", L"./Resource/Effect/bombGround/bomb_2_%d.png", 1, 7);
 	MESHMANAGER->AddMesh("Plane", L"./Resource/Effect/Plane/bullet.obj");
+	IMAGEMANAGER->AddAnimeTexture(L"bulletDestroy", L"./Resource/Effect/attack_effect/%d.png", 1, 5);
+	IMAGEMANAGER->AddAnimeTexture(L"EnemyBomb", L"./Resource/Effect/bomb/bomb_%d.png", 1, 8);
 	
 	isEndLoading = true;
 }
@@ -45,7 +51,7 @@ void LoadScene::Update()
 	{
 		if (loading.joinable())
 			loading.join();
-		SCENEMANAGER->AddScene(new IngameScene());
+		SCENEMANAGER->AddScene(new IngameScene(STAGE_1));
 	}
 }
 

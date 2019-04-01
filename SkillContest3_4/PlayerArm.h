@@ -17,6 +17,7 @@ private:
 	PLAYER_STATE state;
 	PlayerArmFunc playerArmFunc[3];
 	vector<CharacterAttack> vAttack;
+	float attackDistance = 0.0f;
 
 public:
 	virtual void Init()		override;
