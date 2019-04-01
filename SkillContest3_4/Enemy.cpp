@@ -91,7 +91,7 @@ void Enemy::AirEnemyAttack()
 	velocity.z = Lerp(velocity.z, 0.0f, 0.1f);
 	moveVector = GetTargetVec3(pos, { player->pos.x, player->pos.y + 9, player->pos.z });
 	velocity.y += moveVector.y;
-	velocity.y = max(min(velocity.y, 3), -3);
+	velocity.y = max(min(velocity.y, 10), -10);
 
 	RotateLerp({ 0, 0, 0 }, moveVector, &matR);
 
@@ -124,6 +124,7 @@ void Enemy::AirEnemyDie()
 		vector<Texture*> temp = IMAGEMANAGER->AddAnimeTexture(L"EnemyBomb", L"./Resource/Effect/bomb/bomb_%d.png", 1, 8);
 		OBJECTMANAGER->AddObject(OBJ_KINDS::OBJ_ENEMY, new Effect(temp, pos, 0.4f, {0, 0, 0}, false, 0.6f));
 		isDestroy = true;
+		CAMERAMANAGER->ShakeCamera(0.6f);
 	}
 	pos += velocity * ELTIME;
 }

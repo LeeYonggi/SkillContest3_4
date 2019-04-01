@@ -20,7 +20,7 @@ void Rock::Init()
 	animeMesh.push_back(MESHMANAGER->AddMeshAnime("stone", L"./Resource/Enemy/stone/stone%d.obj", 0, 10));
 	scale = { 0.4, 0.4, 0.4 };
 	pos.y -= 4;
-	radius = 15.0f;
+	radius = 12.0f;
 }
 
 void Rock::Update()

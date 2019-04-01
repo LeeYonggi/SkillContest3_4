@@ -34,11 +34,13 @@ private:
 
 private:
 	float lengthFrame = 0.0f;
-	UI *speedUpUI;
+	UI *speedUpUI = nullptr;
+	UI *nuclear = nullptr;
 	float speedUpFrame = 0.0f;
 	float thirdFrame = 0.0f;
 	float trakingFrame = 0.0f;
-	float nuclearFrame = 0.0f;
+	bool isNuclear = false;
+	CMeshLoader *speedUpModel = nullptr;
 
 
 public:

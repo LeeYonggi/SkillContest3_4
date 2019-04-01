@@ -28,5 +28,5 @@ void InputManager::Update()
 		nowKey[i] = GetAsyncKeyState(i);
 
 	GetCursorPos(&mouse);
-	ClientToScreen(DXUTGetHWND(), &mouse);
+	ScreenToClient(DXUTGetHWND(), &mouse);
 }

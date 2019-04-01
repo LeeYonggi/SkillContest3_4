@@ -386,6 +386,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AirEnemy1.cpp" />
+    <ClCompile Include="AirEnemy2.cpp" />
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -397,6 +398,7 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="LoadScene.cpp" />
+    <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="ObjCreator.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
@@ -412,6 +414,7 @@
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="Utility.cpp" />
     <ClInclude Include="AirEnemy1.h" />
+    <ClInclude Include="AirEnemy2.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
@@ -424,6 +427,7 @@
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="LoadScene.h" />
+    <ClInclude Include="MainScene.h" />
     <ClInclude Include="MeshLoader.h" />
     <ClInclude Include="MeshManager.h" />
     <ClInclude Include="ObjCreator.h" />

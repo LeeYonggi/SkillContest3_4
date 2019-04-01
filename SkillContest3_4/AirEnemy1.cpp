@@ -17,9 +17,9 @@ void AirEnemy1::Init()
 	mesh = MESHMANAGER->AddMesh("Enemy1", L"./Resource/Enemy/enemy/enemy_1.obj");
 	
 	enemyFunc[ENEMY_IDLE] = &Enemy::EnemyIdle;
-	enemyFunc[ENEMY_MOVE] = &AirEnemy1::AirEnemyMove;
-	enemyFunc[ENEMY_ATTACK] = &AirEnemy1::AirEnemyAttack;
-	enemyFunc[ENEMY_DIE] = &AirEnemy1::AirEnemyDie;
+	enemyFunc[ENEMY_MOVE] = &Enemy::AirEnemyMove;
+	enemyFunc[ENEMY_ATTACK] = &Enemy::AirEnemyAttack;
+	enemyFunc[ENEMY_DIE] = &Enemy::AirEnemyDie;
 }
 
 void AirEnemy1::Update()

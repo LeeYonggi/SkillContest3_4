@@ -43,6 +43,11 @@ void Player::Init()
 
 	OBJECTMANAGER->AddObject(OBJ_KINDS::OBJ_UI, new PlayerUI(this));
 
+	speedUpModel = MESHMANAGER->AddMesh("SpeedUp_Model", L"./Resource/Effect/speed_up_model/speed_up.obj");
+
+	tempTexture = IMAGEMANAGER->AddAnimeTexture(L"nuclear_effect", L"./Resource/nuclear_effect/1%04d.jpg", 0, 100);
+	nuclear = OBJECTMANAGER->AddObject(OBJ_KINDS::OBJ_FRONTUI, new UI(tempTexture, {640, 360}, 0.3, false, false));
+	nuclear->isActive = false;
 	memset(itemCount, 0, sizeof(itemCount));
 
 }
@@ -67,6 +72,8 @@ void Player::Render()
 {
 	int count = int(frame * 15) % animeMesh[state].size();
 	MESHMANAGER->DrawMesh(animeMesh[state][count], pos, matR, scale);
+	if (speedUpFrame > frame)
+		MESHMANAGER->DrawAlphaMesh(speedUpModel, pos, matR, scale * 8.0);
 }
 
 void Player::Release()
@@ -103,6 +110,7 @@ Vector3 Player::PlayerControl(bool *isControl)
 
 void Player::PlayerIdle()
 {
+	vParticle[0]->isActive = false;
 	if (isControl)
 		state = PLAYER_MOVE;
 	if (IsPlayerAttack())
@@ -112,7 +120,9 @@ void Player::PlayerIdle()
 void Player::PlayerMove()
 {
 	if (!isControl)
+	{
 		state = PLAYER_IDLE;
+	}
 	if (IsPlayerAttack())
 		state = PLAYER_ATTACK;
 	vParticle[0]->isActive = true;
@@ -299,12 +309,28 @@ void Player::ItemPlay()
 	}
 	if (INPUTMANAGER->KeyDown('6') && itemCount[ITEM_NUCLEAR] > 0)
 	{
-
+		isNuclear = true;
+		nuclear->isActive = true;
+		nuclear->frame = 0;
+		timeScale = 0.0f;
+		auto iter = OBJECTMANAGER->GetObjectList(OBJ_ENEMY);
+		for (auto enemy = iter->begin(); enemy != iter->end(); enemy++)
+		{
+			if (((Enemy*)(*enemy))->IsInScreen())
+			{
+				((Enemy*)(*enemy))->hp = 0;
+			}
+		}
 		itemCount[ITEM_NUCLEAR]--;
 	}
 	if (frame > speedUpFrame)
 	{
 		speedUpUI->isActive = false;
 		speed = 0.4f;
+	}
+	if (nuclear->isActive == false && isNuclear == true)
+	{
+		timeScale = 1.0f;
+		isNuclear = false;
 	}
 }

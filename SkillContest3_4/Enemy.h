@@ -19,13 +19,14 @@ public:
 
 protected:
 	Player *player;
-	int hp = 500;
 	ENEMY_STATE state = ENEMY_IDLE;
 	EnemyFunc enemyFunc[4];
 	Vector3 velocity = { 0, 0, 0 };
 	bool isAttacked = false;
 	float attackedTime = 0.0f;
 	
+public:
+	int hp = 500;
 public:
 	virtual void Init()		override;
 	virtual void Update()	override;

@@ -16,6 +16,7 @@ public:
 public:
 	Camera * SetCamera(string name, Camera *camera);
 	Camera *ChangeCamera(string name);
+	void ShakeCamera(float time);
 
 };
 

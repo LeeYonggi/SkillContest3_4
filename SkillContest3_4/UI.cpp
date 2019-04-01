@@ -15,11 +15,16 @@ UI::UI(vector<Texture*> _animeTexture, Vector2 _pos, float _animeSpeed, bool isL
 	isElaps = _isElaps;
 }
 
-UI::UI(Texture * up, Texture * down, Vector2 _pos, Vector2 size)
+UI::UI(Texture * up, Texture * down, Vector2 _pos, Vector2 size, function<void()> func)
 {
 	isButton = true;
 	upTex = up;
 	downTex = down;
+	pos.x = _pos.x;
+	pos.y = _pos.y;
+	this->func = func;
+	this->size.x = size.x;
+	this->size.y = size.y;
 }
 
 UI::~UI()
@@ -35,7 +40,15 @@ void UI::Update()
 {
 	if (isButton)
 	{
-
+		isDown = false;
+		if (GetRectCollision({ (int)pos.x, (int)pos.y }, size))
+		{
+			isDown = true;
+			if (INPUTMANAGER->KeyDown(VK_LBUTTON))
+			{
+				func();
+			}
+		}
 	}
 	else
 	{
@@ -44,7 +57,6 @@ void UI::Update()
 			frame += ELTIME;
 			if (!isLoop && frame * animeSpeed >= animeTexture[0].size())
 			{
-				isDestroy = true;
 				isActive = false;
 			}
 		}
@@ -53,7 +65,6 @@ void UI::Update()
 			frame += animeSpeed;
 			if (!isLoop && frame >= animeTexture[0].size())
 			{
-				isDestroy = true;
 				isActive = false;
 			}
 		}
@@ -82,11 +93,21 @@ void UI::Render()
 		}
 		else
 		{
-			IMAGEMANAGER->DrawTexture(animeTexture[0][(int)frame], {pos.x, pos.y});
+			IMAGEMANAGER->DrawTexture(animeTexture[0][(int)frame % animeTexture[0].size()], {pos.x, pos.y});
 		}
 	}
 }
 
 void UI::Release()
 {
+}
+
+bool UI::GetRectCollision(POINT p1, POINT size)
+{
+	RECT re = { p1.x - size.x * 0.5, p1.y - size.y * 0.5, 
+		p1.x + size.x * 0.5, p1.y + size.y * 0.5 };
+	RECT mouse = { INPUTMANAGER->GetMouse().x, INPUTMANAGER->GetMouse().y,
+		INPUTMANAGER->GetMouse().x + 1,INPUTMANAGER->GetMouse().y + 1 };
+	RECT re2 = { 0 };
+	return IntersectRect(&re2, &re, &mouse);
 }

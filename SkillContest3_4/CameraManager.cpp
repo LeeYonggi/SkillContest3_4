@@ -45,3 +45,8 @@ Camera * CameraManager::ChangeCamera(string name)
 
 	return mainCamera;
 }
+
+void CameraManager::ShakeCamera(float time)
+{
+	mainCamera->CameraShake(time);
+}

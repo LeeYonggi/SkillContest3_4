@@ -42,6 +42,14 @@ void PlayerArm::Update()
 		else if (attackDistance > 0.5f)
 			attackDistance = 4.0f;
 	}
+	if (INPUTMANAGER->KeyDown('S'))
+	{
+		attackDistance -= 0.5f;
+		if (attackDistance < 0.0f)
+			attackDistance = 4.0f;
+		else if (attackDistance < 4.0f && attackDistance > 3.0f)
+			attackDistance = 0.5f;
+	}
 	moveVector = player->moveVector;
 	moveVector.y += attackDistance;
 	RotateLerp({ 0, 0, 0 }, moveVector, &matR);

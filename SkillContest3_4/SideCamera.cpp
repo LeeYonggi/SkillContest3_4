@@ -19,6 +19,6 @@ void SideCamera::Update()
 	Camera::Update();
 	Vector3 temp = player->pos;
 	at = player->pos;
-	temp.z -= 30;
+	temp.z -= 40;
 	eye = Lerp(eye, temp, 0.1f);
 }

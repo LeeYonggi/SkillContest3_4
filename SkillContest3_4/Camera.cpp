@@ -17,6 +17,13 @@ void Camera::Init()
 
 void Camera::Update()
 {
+	if (shakeTime > 0)
+	{
+		eye.x += GetRandomNumber(-30, 30) * 0.03f;
+		eye.y += GetRandomNumber(-30, 30) * 0.03f;
+		eye.z += GetRandomNumber(-30, 30) * 0.03f;
+		shakeTime -= ELTIME;
+	}
 }
 
 void Camera::Render()
@@ -32,4 +39,9 @@ void Camera::Render()
 
 void Camera::Release()
 {
+}
+
+void Camera::CameraShake(float time)
+{
+	shakeTime = time;
 }
